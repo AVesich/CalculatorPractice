@@ -35,7 +35,7 @@ Calculator → The model capable of containing & mutating data entered into the 
 
 NumberModels:
 
-&nbsp;Digit → Enum for int digits 0-9
+&4nbsp;Digit → Enum for int digits 0-9
 
 \tExpression → A model containing both the first number entered into an expression and the operation for the expression
 
