@@ -35,9 +35,9 @@ Calculator → The model capable of containing & mutating data entered into the 
 
 NumberModels:
 
-&embsp;Digit → Enum for int digits 0-9
+&emsp;Digit → Enum for int digits 0-9
 
-&embsp;Expression → A model containing both the first number entered into an expression and the operation for the expression
+&emsp;Expression → A model containing both the first number entered into an expression and the operation for the expression
 
 CalculatorOperation → A model containing a symbol and an operation to be executed by a button (the viewModel performs operations based on the operation for a selected button)
 
