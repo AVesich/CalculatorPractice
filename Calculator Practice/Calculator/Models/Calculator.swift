@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
+
 
 struct Calculator {
     
     // MARK: - Declaring Variables
     var numStr: String {
-        return getNumString(number: num)
+        return getNumString(number: num, withCommas: showCommas)
     }
+    @AppStorage("showCommas") var showCommas: Bool = false
     
     // Number variables
     var mainNum: Decimal? {
@@ -124,7 +127,7 @@ struct Calculator {
     }
     
     // Util
-    private func getNumString(number: Decimal?, withCommas: Bool = false) -> String {
+    func getNumString(number: Decimal?, withCommas: Bool = false) -> String {
         var string = (withCommas ? number?.formatted(.number) : number.map(String.init)) ?? "0"
         
         if carryingNegative { string.insert("-", at: string.startIndex) }

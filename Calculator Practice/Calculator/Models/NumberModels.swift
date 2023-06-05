@@ -16,12 +16,27 @@ enum Digit: Int, CaseIterable, CustomStringConvertible {
 }
 
 struct Expression {
-    enum Operation {
-        case DIVIDE
-        case MULTIPLY
-        case SUBTRACT
-        case ADD
-        case SQRT
+    enum Operation: String {
+        case DIVIDE = "/"
+        case MULTIPLY = "*"
+        case SUBTRACT = "-"
+        case ADD = "+"
+        case SQRT = "√"
+        
+        var description: String {
+            switch self {
+            case .DIVIDE:
+                return "Division"
+            case .MULTIPLY:
+                return "Multiplication"
+            case .SUBTRACT:
+                return "Subtraction"
+            case .ADD:
+                return "Addition"
+            case .SQRT:
+                return "Square Root"
+            }
+        }
     }
     
     var firstNum: Decimal

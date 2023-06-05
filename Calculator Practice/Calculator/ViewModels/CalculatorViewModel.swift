@@ -14,7 +14,10 @@ class CalculatorViewModel: ObservableObject {
     @Published var calculator = Calculator()
     
     var numStr: String { // Since calculator is published, this field automatically is
-        return calculator.numStr
+        calculator.numStr
+    }
+    var currentOperation: Expression.Operation? {
+        calculator.expression?.operation
     }
     
     // Buttons

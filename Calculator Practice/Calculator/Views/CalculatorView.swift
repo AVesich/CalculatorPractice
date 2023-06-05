@@ -11,15 +11,17 @@ struct CalculatorView: View {
     
     // MARK: - Declaring Variables
     @StateObject var viewModel: CalculatorViewModel = CalculatorViewModel()
+    @State var showingSettings: Bool = false
+    @AppStorage("backgroundColor") var backgroundColor: String = Color("Background").asString()
     
     // MARK: - UI
     var body: some View {
-        VStack {
+        VStack(alignment: .trailing) {
             // Settings button
             HStack {
                 Spacer()
                 Button {
-                    
+                    showingSettings = true
                 } label: {
                     Image(systemName: "gearshape.fill")
                         .imageScale(.large)
@@ -29,11 +31,19 @@ struct CalculatorView: View {
             
             // Editing view
             CalculatorTextField(text: viewModel.numStr) // Main editor
-                .shadow(color: .black.opacity(0.2), radius: 7.0, y: 4.0)
                 .frame(height: 100.0)
-                .padding(.horizontal, 8.0)
-                .padding(.vertical, 48.0)
+                .compositingGroup()
+                .padding(.top, 48.0)
+                .shadow(color: .black.opacity(0.5), radius: 7.0, y: 4.0)
             
+            // Operation Chip
+            ZStack(alignment: .center) {
+                OperationChip(operation: viewModel.currentOperation)
+            }
+            .frame(height: 28.0)
+            .padding(.vertical, 16.0)
+            
+            // Buttons
             GeometryReader { geometry in
                 VStack(alignment: .leading, spacing: 24.0) {
                     ForEach(viewModel.operations, id: \.self) { operationRow in
@@ -44,17 +54,19 @@ struct CalculatorView: View {
                                     .frame(maxWidth: .infinity)
                             }
                         }
-                        .padding(.horizontal, 8.0)
                     }
                 }
             }
         }
-        .padding()
+        .padding(24.0)
         .background {
-            Color("Background")
+            backgroundColor.asColor()
             Image("Noise")
                 .blendMode(.multiply)
                 .opacity(0.3)
+        }
+        .sheet(isPresented: $showingSettings) {
+            SettingsSheet()
         }
         .environmentObject(viewModel)
     }

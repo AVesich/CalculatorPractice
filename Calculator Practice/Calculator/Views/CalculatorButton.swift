@@ -32,6 +32,6 @@ struct CalculatorButton: View {
 
 struct CalculatorButton_Previews: PreviewProvider {
     static var previews: some View {
-        CalculatorButton(symbol: "----", vmOp: {})
+        CalculatorButton(symbol: "-", vmOp: {})
     }
 }
